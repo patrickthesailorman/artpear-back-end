@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/patrickthesailorman/aRtIseek-back-end/issues"
   },
-  "homepage": "https://github.com/patrickthesailorman/aRtIseek-back-end#readme"
+  "homepage": "https://github.com/patrickthesailorman/aRtIseek-back-end#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
