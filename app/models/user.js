@@ -2,15 +2,22 @@ var mongoose = require('../../db/connection');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
-  firstName: String, //required
-  lastName: String, //required
-  organizationName: String, //optional
-  email: { //required, unique
+  firstName: {
     type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  organizationName: String,
+  email: {
+    type: String,
+    require: true,
     unique: true
   },
-  bio: String, //optional
-  photoUrl: String //optional
+  bio: String,
+  photoUrl: String
 });
 
 module.exports = mongoose.model('User', User);
