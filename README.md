@@ -1,2 +1,2 @@
-# aRtIseek-back-end
-Back end for aRtIseek using MongoDB and Express JS
+# artpear-back-end
+Back end for ArtPear using MongoDB and Express JS

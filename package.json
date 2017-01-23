@@ -1,22 +1,22 @@
 {
-  "name": "aRtIseek-back-end",
+  "name": "artpear-back-end",
   "version": "1.0.0",
-  "description": "Back end for aRtIseek using MongoDB and Express JS",
+  "description": "Back end for ArtPear using MongoDB and Express JS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patrickthesailorman/aRtIseek-back-end.git"
+    "url": "git+https://github.com/patrickthesailorman/artpear-back-end.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/patrickthesailorman/aRtIseek-back-end/issues"
+    "url": "https://github.com/patrickthesailorman/artpear-back-end/issues"
   },
-  "homepage": "https://github.com/patrickthesailorman/aRtIseek-back-end#readme",
+  "homepage": "https://github.com/patrickthesailorman/artpear-back-end#readme",
   "dependencies": {
     "express": "^4.14.0",
     "mongoose": "^4.7.7"
