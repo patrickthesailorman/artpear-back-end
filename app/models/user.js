@@ -1,6 +1,8 @@
 var mongoose = require('../../db/connection');
 var Schema = mongoose.Schema;
 
+var options = { discriminatorKey: 'kind' };
+
 var User = new Schema({
   firstName: {
     type: String,
@@ -18,6 +20,6 @@ var User = new Schema({
   },
   bio: String,
   photoUrl: String
-});
+}, options);
 
 module.exports = mongoose.model('User', User);
