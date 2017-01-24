@@ -12,7 +12,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Artist.findById(req.params.id, (err, artist) => {
     if(err) console.error(err);
-    res.send(artist);
+    artist.populatePieces(lean = true, (artist) => {
+      res.json(artist);
+    });
   });
 });
 
