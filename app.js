@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var app = express();
 var artistsRouter = require('./app/routers/artists');
 var seekersRouter = require('./app/routers/seekers');
+var opportunitiesRouter = require('./app/routers/opportunities');
+var responsesRouter = require('./app/routers/responses');
+
 var port = process.env.PORT || 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,6 +15,9 @@ var apiPrefix = '/api';
 
 app.use(`${apiPrefix}/artists`, artistsRouter);
 app.use(`${apiPrefix}/seekers`, seekersRouter);
+app.use(`${apiPrefix}/opportunities`, opportunitiesRouter);
+app.use(`${apiPrefix}/responses`, responsesRouter);
+
 
 app.listen(port, () => {
   console.log(`Listening on :${port}`);
