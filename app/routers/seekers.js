@@ -11,7 +11,7 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Seeker.create(req.body.artist)
+    Seeker.create(req.body.seeker)
       .then((seeker) => {
         res.json(seeker);
       })
