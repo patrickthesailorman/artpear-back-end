@@ -2,7 +2,7 @@ var mongoose = require('../../db/connection');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
-var Piece = new Schema({
+var pieceSchema = new Schema({
   _artist : { type: ObjectId, ref: 'Artist' },
   title: {
     type: String,
@@ -12,4 +12,4 @@ var Piece = new Schema({
   photoUrl: String
 });
 
-module.exports = mongoose.model('Piece', Piece);
+module.exports = pieceSchema;
