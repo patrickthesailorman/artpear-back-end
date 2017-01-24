@@ -1,7 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var artistsRouter = require('./app/routers/artists');
 var port = process.env.PORT || 8080;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var apiPrefix = '/api';
 

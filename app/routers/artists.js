@@ -2,20 +2,48 @@ var express = require('express');
 var router = express.Router();
 var Artist = require('../models/artist');
 
-router.get('/', (req, res) => {
-  Artist.find((err, artists) => {
-    if(err) console.error(err);
-    res.send(artists);
+router.route('/')
+  .get((req, res, next) => {
+    Artist.find()
+      .then((artist) => {
+        res.json(artist);
+      })
+      .catch((err) => console.error(err));
+  })
+  .post((req, res, next) => {
+    Artist.create(req.body.artist)
+      .then((artist) => {
+        res.json(artist);
+      })
+      .catch((err) => console.error(err));
   });
-});
 
-router.get('/:id', (req, res) => {
-  Artist.findById(req.params.id, (err, artist) => {
-    if(err) console.error(err);
-    artist.populatePieces(lean = true, (artist) => {
-      res.json(artist);
-    });
+router.route('/:id')
+  .get((req, res, next) => {
+    Artist.findById(req.params.id)
+      .then((artist) => {
+        artist.populatePieces(lean = true, (artist) => {
+          res.json(artist);
+        });
+      })
+      .catch((err) => console.error(err));
+  })
+  .put((req, res, next) => {
+    // https://github.com/Automattic/mongoose/issues/2262
+    Artist.findByIdAndUpdate(req.params.id, req.body.artist, {new: true})
+      .then((artist) => {
+        res.json(artist);
+      })
+      .catch((err) => console.error(err));
+  })
+  .delete((req, res, next) => {
+    Artist.findByIdAndRemove(req.params.id)
+      .then((artist) => {
+        // https://tools.ietf.org/html/rfc7231#section-4.3.5
+        res.sendStatus(200);
+      })
+      .catch((err) => console.error(err));
   });
-});
+
 
 module.exports = router;
