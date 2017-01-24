@@ -10,6 +10,7 @@ var artistSchema = new mongoose.Schema({
   pieces: [pieceSchema]
 }, options);
 
+
 var Artist = User.discriminator('Artist', artistSchema);
 
 module.exports = Artist;
