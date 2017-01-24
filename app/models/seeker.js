@@ -6,11 +6,10 @@ var Piece = require('./piece');
 
 var options = { discriminatorKey: 'kind' };
 
-var artistSchema = new mongoose.Schema({
-  pieces: []
+var seekerSchema = new mongoose.Schema({
+
 }, options);
 
+var Seeker = User.discriminator('Seeker', seekerSchema);
 
-var Artist = User.discriminator('Artist', artistSchema);
-
-module.exports = Artist;
+module.exports = Seeker;
