@@ -31,9 +31,8 @@ User.remove({kind: 'Artist'}).then(() => {
       piece.save((err) => {
         if(err) console.error(err);
 
-        console.log('\nArtist:\n', artist);
-        artist.findPieces((err, pieces) => {
-          console.log('\nPieces:\n', pieces);
+        artist.populatePieces(lean = true, (artist) => {
+          console.log('\nArtist:\n', artist);
           process.exit();
         });
       });
