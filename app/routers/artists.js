@@ -22,9 +22,7 @@ router.route('/:id')
   .get((req, res, next) => {
     Artist.findById(req.params.id)
       .then((artist) => {
-        artist.populatePieces(lean = true, (artist) => {
-          res.json(artist);
-        });
+        res.json(artist);
       })
       .catch((err) => console.error(err));
   })
