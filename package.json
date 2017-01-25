@@ -19,10 +19,11 @@
   "homepage": "https://github.com/patrickthesailorman/artpear-back-end#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
-    "express": "^4.14.0",
     "chai": "^3.5.0",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-alpha.2",
+    "express": "^4.14.0",
     "mocha": "^3.2.0",
-    "express-session": "^1.14.2",
     "mongoose": "^4.7.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

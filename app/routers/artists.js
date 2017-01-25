@@ -15,12 +15,7 @@ router.route('/')
     var artist = new Artist(req.body.artist);
     Artist.register(artist, req.body.artist.password, (err, artist) => {
       if(err) return next(err);
-      Artist.authenticate()(req, res, () => {
-        req.session.save((err) => {
-          if(err) return next(err);
-          res.json(artist);
-        });
-      });
+      res.json(artist);
     })
   });
 
