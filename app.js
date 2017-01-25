@@ -33,6 +33,12 @@ app.use(bodyParser.json());
 
 var apiPrefix = '/api';
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(`${apiPrefix}/artists`, artistsRouter);
 app.use(`${apiPrefix}/seekers`, seekersRouter);
 app.use(`${apiPrefix}/opportunities`, opportunitiesRouter);
