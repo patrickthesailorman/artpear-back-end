@@ -7,7 +7,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
