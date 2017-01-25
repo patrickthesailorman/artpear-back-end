@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var passport = require('passport');
 var app = express();
 
@@ -17,12 +18,12 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// https://github.com/expressjs/session#sessionoptions
-app.use(session({
+// https://github.com/expressjs/cookie-session#api
+app.use(cookieSession({
   // https://devcenter.heroku.com/articles/heroku-local
   secret: process.env.SESSION_SECRECT || 'secret',
-  resave: false,
-  saveUninitialized: false
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 app.use(passport.initialize());
 app.use(passport.session());
