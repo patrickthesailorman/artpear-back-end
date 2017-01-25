@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-var config = require('./config');
 var app = express();
 
 var artistsRouter = require('./app/routers/artists');
@@ -20,7 +19,8 @@ passport.deserializeUser(User.deserializeUser());
 
 // https://github.com/expressjs/session#sessionoptions
 app.use(session({
-  secret: config.sessionSecret,
+  // https://devcenter.heroku.com/articles/heroku-local
+  secret: process.env.SESSION_SECRECT || 'secret',
   resave: false,
   saveUninitialized: false
 }));
