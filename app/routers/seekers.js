@@ -11,11 +11,16 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Seeker.create(req.body.seeker)
-      .then((seeker) => {
-        res.json(seeker);
-      })
-      .catch((err) => console.error(err));
+    var seeker = new Seeker(req.body.seeker);
+    Seeker.register(seeker, req.body.seeker.password, (err, seeker) => {
+      if(err) return next(err);
+      Seeker.authenticate()(req, res, () => {
+        req.session.save((err) => {
+          if(err) return next(err);
+          res.json(seeker);
+        });
+      });
+    })
   });
 
 router.route('/:id')

@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 var Artist = require('../models/artist');
 
@@ -11,11 +12,16 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Artist.create(req.body.artist)
-      .then((artist) => {
-        res.json(artist);
-      })
-      .catch((err) => console.error(err));
+    var artist = new Artist(req.body.artist);
+    Artist.register(artist, req.body.artist.password, (err, artist) => {
+      if(err) return next(err);
+      Artist.authenticate()(req, res, () => {
+        req.session.save((err) => {
+          if(err) return next(err);
+          res.json(artist);
+        });
+      });
+    })
   });
 
 router.route('/:id')
