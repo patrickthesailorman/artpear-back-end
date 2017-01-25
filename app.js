@@ -3,10 +3,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var app = express();
+
 var artistsRouter = require('./app/routers/artists');
 var seekersRouter = require('./app/routers/seekers');
 var opportunitiesRouter = require('./app/routers/opportunities');
 var responsesRouter = require('./app/routers/responses');
+var authRouter = require('./app/routers/auth');
 
 var port = process.env.PORT || 8080;
 var User = require('./app/models/user');
@@ -33,7 +35,7 @@ app.use(`${apiPrefix}/artists`, artistsRouter);
 app.use(`${apiPrefix}/seekers`, seekersRouter);
 app.use(`${apiPrefix}/opportunities`, opportunitiesRouter);
 app.use(`${apiPrefix}/responses`, responsesRouter);
-
+app.use(`${apiPrefix}/auth`, authRouter);
 
 app.listen(port, () => {
   console.log(`Listening on :${port}`);
