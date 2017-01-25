@@ -1,5 +1,6 @@
 var mongoose = require('../../db/connection');
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var options = { discriminatorKey: 'kind' };
 
@@ -21,5 +22,9 @@ var User = new Schema({
   bio: String,
   photoUrl: String
 }, options);
+
+User.plugin(passportLocalMongoose, {
+  usernameField: 'email'
+});
 
 module.exports = mongoose.model('User', User);
