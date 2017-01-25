@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
+var config = require('./config');
 var app = express();
 
 var artistsRouter = require('./app/routers/artists');
@@ -19,7 +20,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // https://github.com/expressjs/session#sessionoptions
 app.use(session({
-  secret: '?s2}FX84e?4gC43nCyB7',
+  secret: config.sessionSecret,
   resave: false,
   saveUninitialized: false
 }));
