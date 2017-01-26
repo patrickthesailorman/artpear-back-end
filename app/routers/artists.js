@@ -12,8 +12,8 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    var artist = new Artist(req.body.artist);
-    Artist.register(artist, req.body.artist.password, (err, artist) => {
+    var artist = new Artist(req.body);
+    Artist.register(artist, req.body.password, (err, artist) => {
       if(err) return next(err);
       res.json(artist);
     })
@@ -29,7 +29,7 @@ router.route('/:id')
   })
   .put((req, res, next) => {
     // https://github.com/Automattic/mongoose/issues/2262
-    Artist.findByIdAndUpdate(req.params.id, req.body.artist, {new: true})
+    Artist.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((artist) => {
         res.json(artist);
       })

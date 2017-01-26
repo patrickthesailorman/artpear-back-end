@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
+var cors = require('cors');
 var app = express();
 
 var artistsRouter = require('./app/routers/artists');
@@ -33,11 +34,8 @@ app.use(bodyParser.json());
 
 var apiPrefix = '/api';
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
+app.options('*', cors());
 
 app.use(`${apiPrefix}/artists`, artistsRouter);
 app.use(`${apiPrefix}/seekers`, seekersRouter);
