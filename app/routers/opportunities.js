@@ -11,7 +11,7 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Opportunity.create(req.body.opportunity)
+    Opportunity.create(req.body)
       .then((opportunity) => {
         res.json(opportunity);
       })
@@ -28,7 +28,7 @@ router.route('/:id')
   })
   .put((req, res, next) => {
     // https://github.com/Automattic/mongoose/issues/2262
-    Opportunity.findByIdAndUpdate(req.params.id, req.body.opportunity, {new: true})
+    Opportunity.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((opportunity) => {
         res.json(opportunity);
       })

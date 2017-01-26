@@ -11,8 +11,8 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    var seeker = new Seeker(req.body.seeker);
-    Seeker.register(seeker, req.body.seeker.password, (err, seeker) => {
+    var seeker = new Seeker(req.body);
+    Seeker.register(seeker, req.body.password, (err, seeker) => {
       if(err) return next(err);
       Seeker.authenticate()(req, res, () => {
         req.session.save((err) => {
@@ -33,7 +33,7 @@ router.route('/:id')
   })
   .put((req, res, next) => {
     // https://github.com/Automattic/mongoose/issues/2262
-    Artist.findByIdAndUpdate(req.params.id, req.body.seeker, {new: true})
+    Artist.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((seeker) => {
         res.json(seeker);
       })

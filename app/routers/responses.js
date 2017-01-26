@@ -11,7 +11,7 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Response.create(req.body.response)
+    Response.create(req.body)
       .then((response) => {
         res.json(response);
       })
@@ -28,7 +28,7 @@ router.route('/:id')
   })
   .put((req, res, next) => {
     // https://github.com/Automattic/mongoose/issues/2262
-    Response.findByIdAndUpdate(req.params.id, req.body.response, {new: true})
+    Response.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((response) => {
         res.json(response);
       })
