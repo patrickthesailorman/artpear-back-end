@@ -33,7 +33,7 @@ router.route('/:id')
   })
   .put((req, res, next) => {
     // https://github.com/Automattic/mongoose/issues/2262
-    Artist.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    Seeker.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((seeker) => {
         res.json(seeker);
       })
