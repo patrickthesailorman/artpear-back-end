@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
 var cors = require('cors');
+var morgan = require('morgan');
 var app = express();
 
 var artistsRouter = require('./app/routers/artists');
@@ -36,6 +37,8 @@ var apiPrefix = '/api';
 
 app.use(cors());
 app.options('*', cors());
+
+app.use(morgan('dev'));
 
 app.use(`${apiPrefix}/artists`, artistsRouter);
 app.use(`${apiPrefix}/seekers`, seekersRouter);
