@@ -4,7 +4,14 @@ var User = require('../models/user');
 var router = express.Router();
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
-  res.sendStatus(200);
+  const {firstName, lastName, email, kind} = req.user;
+  const user = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    kind: kind
+  };
+  res.json(user);
 });
 
 router.post('/logout', (req, res, next) => {

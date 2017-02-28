@@ -15,6 +15,12 @@ router.route('/')
     var artist = new Artist(req.body);
     Artist.register(artist, req.body.password, (err, artist) => {
       if(err) return next(err);
+      passport.authenticate('local')(req, res, () => {
+        req.session.save((err) => {
+        if (err) return next(err);
+        res.sendStatus(200);
+    });
+});
       res.json(artist);
     })
   });

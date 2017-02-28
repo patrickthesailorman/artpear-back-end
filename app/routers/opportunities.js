@@ -11,7 +11,12 @@ router.route('/')
       .catch((err) => console.error(err));
   })
   .post((req, res, next) => {
-    Opportunity.create(req.body)
+    if(req.user === undefined) {
+      res.sendStatus(401);
+    }
+    let newOpportunity = req.body;
+    newOpportunity.seeker = req.user;
+    Opportunity.create(newOpportunity)
       .then((opportunity) => {
         res.json(opportunity);
       })
